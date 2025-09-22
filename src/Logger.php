@@ -22,8 +22,14 @@ class Logger
         (string) $line = "[$timestamp] $level: $message/-/$contextStr" . PHP_EOL;
 
         if ($this->logToConsole) {
-            $stream = ($level === 'ERROR' || $level === 'CRITICAL') ? STDERR : STDOUT;
-            fwrite($stream, $line);
+            $stream = in_array($level, ['ERROR', 'CRITICAL'])
+                ? fopen('php://stderr', 'w')
+                : fopen('php://stdout', 'w');
+
+            if ($stream) {
+                fwrite($stream, $line);
+                fclose($stream);
+            }
         }
     }
 
