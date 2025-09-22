@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . 'Logger';
+require_once __DIR__ . '/src/Logger.php';
 
 class Controller
 {
@@ -16,7 +16,7 @@ class Controller
     {
         $this->logger->info('Запрошена главная страница');
 
-        $filePath = __DIR__ . './View/index.html';
+        $filePath = __DIR__ . '/View/index.html';
 
         if (file_exists($filePath)) {
             $this->logger->info('Отдаю HTML-страницу', ['file' => $filePath]);
