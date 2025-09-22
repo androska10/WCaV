@@ -13,7 +13,7 @@ class Logger
         $this->logFile = $logFile ?: __DIR__ . './../logs/app/logs';
     }
 
-    private function write ( string $level = 'INFO', string $message, array $context = [] ): void
+    private function write ( string $level, string $message, array $context = [] ): void
     {
         $timestamp = date('Y-m-d H:i:s');
 
