@@ -10,7 +10,7 @@
  */
 
 require_once __DIR__ . '/src/Logger.php';
-require_once __DIR__ . '/src/Controller.php';
+require_once __DIR__ . '/Controller.php';
 
 $logger = new Logger();
 
