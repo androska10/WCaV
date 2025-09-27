@@ -20,10 +20,10 @@ class Collector
         $data = [];
         
         
-        $ch = curl_init($url);//https://www.lada.ru/api-v1/os-cars/938141/city-id
+        $ch = curl_init($url);
 
         if ($ch === false) {
-            $this->logger->error('');
+            $this->logger->error("Не удалось инициализировать cURL для URL: $url");
             return $data;
         }
 

@@ -14,6 +14,7 @@ define('BASE_PATH', __DIR__);
 require_once __DIR__ . '/src/Logger.php';
 require_once __DIR__ . '/Controller/Controller.php';
 require_once __DIR__ . '/Controller/routes/Route.php';
+require_once BASE_PATH . '/src/Collector.php';
 
 $logger = new Logger();
 $logger->info("Приложение запущено",[
@@ -21,8 +22,8 @@ $logger->info("Приложение запущено",[
     'request_method' => $_SERVER['REQUEST_METHOD'] ?? 'CLI'
 ]);
 
-Route::get('/', [Controller::class, 'index']);
-Route::get('/hello', function () {
+Route::get('/hello', [Controller::class, 'index']);
+Route::get('/', function () {
     echo "Привет от роутера!";
 });
 

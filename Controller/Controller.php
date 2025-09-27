@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../src/Logger.php';
+require_once BASE_PATH . '/src/Collector.php';
 
 class Controller
 {
@@ -16,17 +17,18 @@ class Controller
     {
         $this->logger->info('Запрошена главная страница');
 
+        $collector = new Collector();
+
+        $url = "https://www.lada.ru/api-v1/os-cars/938141/city-id";
+        $data = $collector->fetchData($url);
+
         $filePath = BASE_PATH . '/View/home.php';
 
         if (file_exists($filePath)) {
-            $this->logger->info('Отдаю HTML-страницу', ['file' => $filePath]);
-            readfile($filePath);
-            return true;
+            include $filePath;
         } else {
-            $this->logger->error('Файл не найден', ['file' => $filePath]);
             http_response_code(404);
-            echo "Страница не найдена";
-            return false;
+            echo "View не найден: home.php";
         }
     }
 }
