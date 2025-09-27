@@ -17,32 +17,49 @@ class Route
     public static function dispatch() 
     {
         $method = $_SERVER['REQUEST_METHOD'];
-
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-        $logger = new Logger(); // или передай извне (лучше через DI, но для простоты так)
+        $logger = new Logger();
         $logger->info("Request received", [
             'method' => $method,
             'uri' => $uri
         ]);
 
-        $possibleRouttes = self::$routes[$method] ?? [];
+        $possibleRoutes = self::$routes[$method] ?? [];
 
-        foreach ($possibleRouttes as $pattern => $handler) {
+        foreach ($possibleRoutes as $pattern => $handler) {
             $params = self::matchRoute($pattern, $uri);
             if ($params !== false) {
+                // 🔹 Улучшенное логирование
+                if (is_string($handler)) {
+                    $logHandler = $handler;
+                } elseif (is_array($handler)) {
+                    $logHandler = implode('::', $handler);
+                } else {
+                    $logHandler = 'Closure';
+                }
                 $logger->info("Route matched", [
                     'pattern' => $pattern,
-                    'handler' => is_string($handler) ? $handler : 'Closure',
+                    'handler' => $logHandler,
                     'params' => $params
                 ]);
-                if (is_callable($handler)) {
-                    call_user_func_array($handler, $params);
+
+                // 🔹 Правильный вызов обработчика — ПОРЯДОК ВАЖЕН!
+                if (is_array($handler) && count($handler) === 2) {
+                    // Это [Class, method] → создаём объект
+                    [$class, $method] = $handler;
+                    $controller = new $class();
+                    call_user_func_array([$controller, $method], $params);
                 } elseif (is_string($handler) && strpos($handler, '@') !== false) {
+                    // Это 'Class@method'
                     [$class, $method] = explode('@', $handler);
                     $controller = new $class();
                     call_user_func_array([$controller, $method], $params);
+                } elseif (is_callable($handler)) {
+                    // Это closure или другая функция
+                    call_user_func_array($handler, $params);
                 }
+
                 return;
             }
         }
@@ -51,6 +68,7 @@ class Route
             'method' => $method,
             'uri' => $uri
         ]);
+        http_response_code(404);
         echo "404 --- Страница не найдена";
     }
 
