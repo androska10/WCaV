@@ -16,7 +16,7 @@ class Controller
     {
         $this->logger->info('Запрошена главная страница');
 
-        $filePath = BASE_PATH . '/View/index.php';
+        $filePath = BASE_PATH . '/View/home.php';
 
         if (file_exists($filePath)) {
             $this->logger->info('Отдаю HTML-страницу', ['file' => $filePath]);
