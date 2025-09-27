@@ -1,0 +1,6 @@
+# .gitignore
+logs/
+vendor/
+.env
+data.db
+*.log
