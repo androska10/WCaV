@@ -30,10 +30,15 @@ class Collector
         curl_setopt_array($ch, [
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_TIMEOUT => 15,
-            CURLOPT_USERAGENT => 'WCaV Collector/1.0 via cURL',
+            CURLOPT_USERAGENT => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
             CURLOPT_HTTPHEADER => [
-                'Accept: application/json',
-                'Content-Type: application/json'
+                'Accept: application/json, text/plain, */*',
+                'Accept-Language: ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7',
+                'Referer: https://www.lada.ru/',
+                'Origin: https://www.lada.ru',
+                'Sec-Fetch-Dest: empty',
+                'Sec-Fetch-Mode: cors',
+                'Sec-Fetch-Site: same-site',
             ],
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_SSL_VERIFYPEER => true,
