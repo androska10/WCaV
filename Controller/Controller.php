@@ -19,7 +19,8 @@ class Controller
 
         $collector = new Collector();
 
-        $url = "https://www.lada.ru/api-v1/os-cars/938141/city-id";
+        // $url = "https://www.lada.ru/api-v1/os-cars/938141/city-id";
+        $url = "https://jsonplaceholder.typicode.com/posts/1";
         $data = $collector->fetchData($url);
 
         $filePath = BASE_PATH . '/View/home.php';
