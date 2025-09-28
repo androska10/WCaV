@@ -13,7 +13,7 @@ class Database
 
         $host = $_ENV['MYSQLHOST'] ?? '127.0.0.1';
         $port = $_ENV['MYSQLPORT'] ?? '3306';
-        $dbname = $_ENV['MYSQLDATABASE'] ?? 'railway';
+        $dbname = $_ENV['MYSQL_DATABASE'] ?? 'railway';
         $user = $_ENV['MYSQLUSER'] ?? 'root';
         $password = $_ENV['MYSQLPASSWORD'] ?? 'password';
 
