@@ -15,7 +15,7 @@ define('BASE_PATH', __DIR__);
 
 require_once __DIR__ . '/src/Logger.php';
 require_once __DIR__ . '/Controller/Controller.php';
-require_once BASE_PATH . 'Controller/DbController.php';
+require_once BASE_PATH . '/Controller/DbController.php';
 require_once __DIR__ . '/Controller/routes/Route.php';
 require_once BASE_PATH . '/src/Collector.php';
 
