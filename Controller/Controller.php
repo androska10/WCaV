@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/../src/Logger.php';
 require_once BASE_PATH . '/src/Collector.php';
+require_once BASE_PATH . '/src/Database.php';
 
 class Controller
 {
@@ -18,9 +19,9 @@ class Controller
         $this->logger->info('Запрошена главная страница');
 
         $collector = new Collector();
-
+        $db = new Database();
         
-        $url = "https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=5m";
+        $url = "https://api.binance.com/api/v3/uiKlines?symbol=BTCUSDT&interval=5m";
         $data = $collector->fetchData($url);
 
         $filePath = BASE_PATH . '/View/home.php';
