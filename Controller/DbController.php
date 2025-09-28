@@ -6,7 +6,7 @@ class DbController {
         $host = $_ENV['MYSQLHOST'] ?? '127.0.0.1';
         $user = $_ENV['MYSQLUSER'] ?? 'root';
         $pass = $_ENV['MYSQLPASSWORD'] ?? '';
-        $db   = $_ENV['MYSQLDATABASE'] ?? 'trade';
+        $db   = $_ENV['MYSQL_DATABASE'] ?? 'trade';
         $port = $_ENV['MYSQLPORT'] ?? 3306;
 
         try {
