@@ -10,7 +10,11 @@ class Database
     public function __construct()
     {
         $this->logger = new Logger();
-
+        error_log('HOST: ' . ($_ENV['MYSQLHOST'] ?? 'NOT SET'));
+        error_log('PORT: ' . ($_ENV['MYSQLPORT'] ?? 'NOT SET'));
+        error_log('USER: ' . ($_ENV['MYSQLUSER'] ?? 'NOT SET'));
+        error_log('DB_NAME: ' . ($_ENV['MYSQL_DATABASE'] ?? 'NOT SET'));
+        error_log('PASS: ' . ($_ENV['MYSQLPASSWORD'] ?? 'NOT SET'));
         $host = $_ENV['MYSQLHOST'] ?? '127.0.0.1';
         $port = $_ENV['MYSQLPORT'] ?? '3306';
         $dbname = $_ENV['MYSQL_DATABASE'] ?? 'railway';
