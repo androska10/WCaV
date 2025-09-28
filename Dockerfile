@@ -5,6 +5,7 @@ RUN apt-get update && apt-get install -y \
     git \
     zip \
     unzip \
+    mariadb-client \
     && rm -rf /var/lib/apt/lists/*
 
 RUN docker-php-ext-install pdo pdo_mysql
