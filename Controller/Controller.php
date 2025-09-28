@@ -17,12 +17,9 @@ class Controller
     public function index()
     {
         $this->logger->info('Запрошена главная страница');
-
-        $collector = new Collector();
-        $db = new Database();
         
-        $url = "https://api.binance.com/api/v3/uiKlines?symbol=BTCUSDT&interval=5m";
-        $data = $collector->fetchData($url);
+        $db = new Database();
+        $data = $db->getKlines();
 
         $filePath = BASE_PATH . '/View/home.php';
 
@@ -31,6 +28,22 @@ class Controller
         } else {
             http_response_code(404);
             echo "View не найден: home.php";
+        }
+    }
+
+    public function getKlines ()
+    {
+        $this->logger->info('Запрошены данные из API Binance');
+
+        $collector = new Collector();
+        $url = "https://api.binance.com/api/v3/uiKlines?symbol=BTCUSDT&interval=5m";
+        $data = $collector->fetchData($url);
+
+        $db = new Database();
+        if ($db->saveKlines($data)) {
+            $this->logger->info('Данные Binace успешно сохранены');
+        } else {
+            $this->logger->warning('Ошибка сохранения данных с Binance');
         }
     }
 }
