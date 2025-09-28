@@ -9,10 +9,13 @@
  * 
  */
 
+use Controller\DbController;
+
 define('BASE_PATH', __DIR__);
 
 require_once __DIR__ . '/src/Logger.php';
 require_once __DIR__ . '/Controller/Controller.php';
+require_once BASE_PATH . 'Controller/DbController.php';
 require_once __DIR__ . '/Controller/routes/Route.php';
 require_once BASE_PATH . '/src/Collector.php';
 
@@ -27,6 +30,8 @@ Route::get('/', function () {
 });
 Route::get('/hello', [Controller::class, 'index']);
 Route::get('/hello/binance', [Controller::class, 'getKlines']);
+
+Route::get('/SQL_SELECT_TABLE', [DbController::class, 'importDump']);
 
 
 Route::dispatch();
