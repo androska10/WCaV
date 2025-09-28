@@ -20,7 +20,7 @@ class Controller
         $collector = new Collector();
 
         
-        $url = "https://api.binance.com/api/v3/trades?symbol=BTCUSDT";
+        $url = "https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=5m";
         $data = $collector->fetchData($url);
 
         $filePath = BASE_PATH . '/View/home.php';
