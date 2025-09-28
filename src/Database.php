@@ -17,7 +17,7 @@ class Database
         error_log('PASS: ' . ($_ENV['MYSQLPASSWORD'] ?? 'NOT SET'));
         $host = $_ENV['MYSQLHOST'] ?? '127.0.0.1';
         $port = $_ENV['MYSQLPORT'] ?? '3306';
-        $dbname = $_ENV['MYSQL_DATABASE'] ?? 'railway';
+        $dbname = $_ENV['MYSQLDATABASE'] ?? 'railway';
         $user = $_ENV['MYSQLUSER'] ?? 'root';
         $password = $_ENV['MYSQLPASSWORD'] ?? 'password';
 
