@@ -22,10 +22,11 @@ $logger->info("Приложение запущено",[
     'request_method' => $_SERVER['REQUEST_METHOD'] ?? 'CLI'
 ]);
 
-Route::get('/hello', [Controller::class, 'index']);
 Route::get('/', function () {
-    echo "Привет от роутера!";
+    echo "<h1>Привет от роутера!</h1>";
 });
+Route::get('/hello', [Controller::class, 'index']);
+Route::get('/hello/binance', [Controller::class, 'getKlines']);
 
 
 Route::dispatch();
