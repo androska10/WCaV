@@ -14,7 +14,7 @@ class DbController {
                 \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION
             ]);
 
-            $sql = file_get_contents(BASE_PATH . '/trade.sql');
+            $sql = file_get_contents(BASE_PATH . '/sql/trade.sql');
             $pdo->exec($sql);
 
             echo "<h2>✅ Дамп успешно загружен!</h2>";
