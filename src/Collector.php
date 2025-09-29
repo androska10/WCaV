@@ -43,7 +43,6 @@ class Collector
 
         curl_close($ch);
 
-        // 🔍 Логируем всё для отладки
         $this->logger->info("Запрос к API", [
             'url' => $url,
             'http_code' => $httpCode,
@@ -51,13 +50,11 @@ class Collector
             'curl_error' => $error
         ]);
 
-        // ❌ Если cURL сам выдал ошибку
         if ($error) {
             $this->logger->error("cURL ошибка", ['url' => $url, 'error' => $error]);
             return [];
         }
 
-        // ❌ Если HTTP-статус не 200
         if ($httpCode !== 200) {
             $this->logger->error("HTTP ошибка", [
                 'url' => $url,
@@ -67,7 +64,6 @@ class Collector
             return [];
         }
 
-        // ✅ Пытаемся распарсить JSON
         $data = json_decode($response, true);
 
         if (json_last_error() !== JSON_ERROR_NONE) {

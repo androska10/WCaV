@@ -83,14 +83,12 @@ class Database
             return [];
         }
 
-        // Получаем последние $maxCount записей (самые свежие)
         $selectSql = "SELECT * FROM klines ORDER BY open_time DESC LIMIT :maxCount";
         $stmt = $this->pdo->prepare($selectSql);
         $stmt->bindValue(':maxCount', $maxCount, PDO::PARAM_INT);
         $stmt->execute();
 
-        // Если нужен порядок от старых к новым — разверните массив
         $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return array_reverse($data); // теперь [старая, ..., новая]
+        return array_reverse($data);
     }
 }
