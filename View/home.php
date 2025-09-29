@@ -5,7 +5,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Binance Klines</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0f0f13;
+            color: #e0e0ff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #00f7ff, #b967ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px rgba(185, 103, 255, 0.3);
+            letter-spacing: 1px;
+        }
+
+        h1::before {
+            content: "₿ ";
+        }
+
+        .card {
+            background: #16161d;
+            border: 1px solid #2a2a3a;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 247, 255, 0.1);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 500px;
+            width: 100%;
+        }
+
+        canvas {
+            display: block;
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #a0a0c0;
+            font-size: 0.9rem;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 40px;
+            font-size: 1.4rem;
+            color: #ff00c8;
+            text-shadow: 0 0 8px rgba(255, 0, 200, 0.4);
+        }
+    </style>
 </head>
 <body>
     <h1>Binance Klines (BTC/USDT)</h1>
