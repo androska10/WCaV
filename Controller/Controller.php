@@ -41,8 +41,10 @@ class Controller
 
         $db = new Database();
         if ($db->saveKlines($data)) {
+            echo "Данные успешно сохранены)";
             $this->logger->info('Данные Binace успешно сохранены');
         } else {
+            echo "Данные НЕ сохранены(";
             $this->logger->warning('Ошибка сохранения данных с Binance');
         }
     }
